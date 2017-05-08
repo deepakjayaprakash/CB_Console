@@ -348,7 +348,7 @@
 
   <ul class="nav nav-tabs">
     <li  class="active"><a data-toggle="tab" href="#home">Billing of Materials</a></li>
-    <li ><a data-toggle="tab" href="#menu2">Output section</a></li>
+   
     <li><a data-toggle="tab" href="#menu3">Formulae Sheet</a></li>
   </ul>
 
@@ -612,67 +612,7 @@
     </div>
 </div> 
 
-    <div id="menu2" class="tab-pane fade  in ">
-        
-        
-     
-        <div>
-            <h1>Customer Info</h1>
-      <p id="CustomerInfo"></p>
-            </div>
-      
-         <p id="pricinglist"></p>
-      <div id="otherinfo"></div>
-
-      <div id="throughputs"></div>
-      
-        
-      
-
-<script>
-/*document.getElementById("CustomerInfo").innerHTML = "<pre>Quote prepared By:         Ajesh Baby, Senior Product Manager<br>Cusomter:                   Wipro <br>Customer Contact:	    Suradeep Das <br>Delivery Address:	    Nxtra Data, White Field<br>Description:	          Storage 500TB Tier1 and Tier3, 950TB backup <br> Usable Capacity:              100<br>Tier:                      SSDHighPerformance</pre>";
-*/
     
-document.getElementById("CustomerInfo").innerHTML = "<pre>Quote prepared By:         Ajesh Baby, Senior Product Manager<br>Cusomter:                  "+companyName+"  <br>Customer Contact:	    "+customerName+" <br>Delivery Address:	    "+address+"<br>Description:	          "+description+"<br> Usable Capacity:              "+usableCapcityTB+"<br>Tier:                      "+tier+"</pre>";
-    
-    
-    
-    
-    
-  document.getElementById("pricinglist").innerHTML =  " <pre><b>Type          Qty          Unit Price          Total Price<br>Controllers    "+numControllers+"            "+ costController+"                 "+(costController*numControllers)
-      +"<br>JBODS          "+numJBODS+"            "+ costJBODS+"                 "+(numJBODS*costJBODS)+
-      "<br>Data Disks    "+numDataDisks+"            "+ costDataDisks+"                 "+(numDataDisks*costDataDisks)+
-      "<br>Zil            "+zil+"            "+ costZil+"                   "+(zil*costZil)+
-      "<br>Read Cache     "+readCache+"            "+ costReadCache+"                   "+(readCache*costReadCache)+
-      "<br>Zil            "+metaCache+"            "+ costMetaCache+"                  "+(metaCache*costMetaCache)+
-      "<br>Sas Cables    "+numberOfSASCables+"            "+ costSASCables+"                 "+(costSASCables*numberOfSASCables)+
-      
-       "<br><br><br><br><br><br>Total HW Cost (3 yr support cost included)  : "+totalHWCost+
-       "<br><br>Support Charge per year from 4th year  : "+supportHW+
-      
-       "<br><br><br><br><br><br>Total SW Cost  : "+totalSWCost+
-       "<br><br>Support Charge per year from 2nd year  : "+supportSW+
-      
-      
-       "<br><br><br><br><br><br>Total Cost for 3 years   : "+totalCost3+
-       "<br><br>Total Cost for 5 years   : "+totalCost5+
-      
-       "<br><br><br><br><br><br>Cost Per GB PM for 3year   : "+costPerGBPerMonth3+
-       "<br><br>Cost Per GB PM for 5year   : "+costPerGBPerMonth5+
-      
-      "</pre>";
-
-  
-
-   
-    
-
-                                                                                                                       
-
-</script>
-
-        
-    </div>
 
 
 

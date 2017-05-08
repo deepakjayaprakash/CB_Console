@@ -12,7 +12,10 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-
+<style>
+    .navbar{background: #005cb9;
+    }    
+</style>
    
  
 </head>
@@ -27,10 +30,21 @@
 	}
 	$user = $_SESSION['user']; //assigns user value
 	
+    mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
+	mysql_select_db("partnerlogin") or die("Cannot connect to database"); //Connect to database
+    
+    $query = mysql_query("SELECT * from partner_db WHERE username='$user'");
+    
+    while($row = mysql_fetch_assoc($query)) //display all rows from query
+		{
+			$password= $row['password'];
+            $company=$row['company'];
+			
+		}
+    
 	
 	?>
 
-    
     
     
 
@@ -45,12 +59,13 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>                        
       </button>
-      <a class="navbar-brand" href="#myPage">Partner Login</a>
+        <img src="http://www.cloudbyte.com/wp-content/uploads/2017/03/white-logo.png" style="float:left;">      <a class="navbar-brand" href="#myPage" style="color:white;text-align:center;"><h3>Partner Login</h3></a>
+    
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php">HOME</a></li>
-        <li><a href="logout.php">LOGOUT</a></li>
+        <li><a href="login.php" style="color:white;padding:20px;padding-top:40px;">HOME</a></li>
+        <li><a href="logout.php" style="color:white;padding:20px;padding-top:40px;">LOGOUT</a></li>
         
       </ul>
     </div>
@@ -61,8 +76,8 @@
 
 
 
-
-<div class="container">
+<br><br><br>
+<div class="container-fluid">
  
  <div class="row">
   <div class="col-sm-2">
@@ -74,9 +89,9 @@
    <!-- <li><a data-toggle="pill" href="#dashborad">Dash Board</a></li> -->
     <li><a data-toggle="pill" href="#dashboard">Dashboard</a></li>
     <li><a data-toggle="pill" href="#acc_info">Account Information</a></li>
-    <li><a data-toggle="pill" href="#order">Place an order </a></li>
     <li><a data-toggle="pill" href="#quote">Quote Generation </a></li>
     <li><a data-toggle="pill" href="#iops">IOPS Calculator </a></li>
+    <li><a data-toggle="pill" href="#help">HELP? </a></li>
   </ul>
   </div>
 
@@ -86,49 +101,84 @@
       
       
     <div id="iops" class="tab-pane fade">
-      <h3>IOPS</h3>
-     
+      <h3>Select the required configuration to check out IOPS, throughput and other statistics</h3>
+        <br><br>
+         <?php 
+            echo file_get_contents('iops.php');
+          ?>
     </div>
+      
+      
     <div id="quote" class="tab-pane fade ">
       <h3>Quote</h3>
+          <?php 
+            echo file_get_contents('quote.php');
+          ?>
+      
+    </div>
+    <div id="help" class="tab-pane fade">
      
-      
+            <?php 
+            echo file_get_contents('help.php');
+          ?>
+     
     </div>
-    <div id="order" class="tab-pane fade">
-      <h3>Place an Order</h3>
       
-    </div>
+      
     <div id="acc_info" class="tab-pane fade">
       <h3>Account Information</h3>
-    
+        <br>
+        <div class="col-md-6">
+        <table class="table table-hover">
+            <tr>
+                <td>User Name</td>
+                <td><?php  echo $user; ?></td>
+            </tr>
+            
+            <tr>
+                <td>Company</td>
+                <td><?php  echo $company; ?></td>
+            </tr>
+            
+            <tr>
+                <td>Password</td>
+                <td><?php  echo $password; ?></td>
+            </tr>
+            
+           
+        </table>
+            </div>
+        
     </div>
+      
+      
     <div id="dashboard" class="tab-pane fade in active">
         
         
-        <div class="container" style="width:100%;">
-  <h1>Dash Board</h1>
+    <div class="container" style="width:100%;">
+        <h1>Dash Board</h1>
 
-  <div class="panel-group">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">
-          <a data-toggle="collapse" href="#collapse1">What can I do in the partners login?</a>
-        </h4>
+      <div class="panel-group">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">
+              <a data-toggle="collapse" href="#collapse1">What can I do in the partners login?</a>
+            </h4>
+          </div>
+          <div id="collapse1" class="panel-collapse collapse">
+            <div class="panel-body">You can do anything you want. Yes. <br>
+             Use awesome modules like IOPS / Throughput calculator to get an idea of the estimates of your configuration. Use BOM generator to get a Billing of Material and to generate quotes.  </div>
+
+        </div>
       </div>
-      <div id="collapse1" class="panel-collapse collapse">
-        <div class="panel-body">You can do anything you want. Yes. <br>
-         Use awesome modules like IOPS / Throughput calculator to get an idea of the estimates of your configuration. Use BOM generator to get a Billing of Material and to generate quotes.  </div>
-       
     </div>
-  </div>
-</div>
     
    
         
-        <div class="jumbotron text-center" style="background-image: url('images/keyboard.jpg');
-    background-repeat: no-repeat;     background-position: center center;
-    background-attachment: fixed;background-size:cover;height:400px;opacity:0.9"><br><br>
-  <h1>Dash Board </h1> 
+            <div class="jumbotron text-center" style="background-image: url('images/keyboard.jpg');
+        background-repeat: no-repeat;     background-position: center center;
+        background-attachment: fixed;background-size:cover;height:400px;opacity:0.9"><br><br>
+      <h1>Dash Board </h1> 
    
      
             
@@ -150,7 +200,7 @@
   <a href="#myPage" title="To Top">
     <span class="glyphicon glyphicon-chevron-up"></span>
   </a>
-  <p style="background:#181a1b; color:white">Copyrights© reserved by CodeBlooded</p>
+  
 </footer>
 
 <script>
