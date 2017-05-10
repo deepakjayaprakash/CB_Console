@@ -7,6 +7,11 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    
+   <style>
+    .navbar{background: #005cb9;
+    }    
+</style>    
 </head>
 <body>
 
@@ -358,7 +363,27 @@
     
 
 
-
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <img src="http://www.cloudbyte.com/wp-content/uploads/2017/03/white-logo.png" style="float:left;">      <a class="navbar-brand" href="#myPage" style="color:white;text-align:center;"><h3>Partner Login</h3></a>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="dashboard.php" style="color:white;padding:20px;padding-top:40px;">BACK</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+    
 
 
 <div class="container-fluid">
