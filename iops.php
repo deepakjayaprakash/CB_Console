@@ -8,7 +8,7 @@
                     <select name="disktype" id="disktype">
                     <option value="nlsas4">NLSAS- 4 TB</option>
                         <option value="nlsas6">NLSAS- 6 TB</option>
-                        <option value="nlsa8">NLSAS- 8 TB</option>
+                        <option value="nlsas8">NLSAS- 8 TB</option>
                     <option value="sas10kt">SAS 10K- 1.8 TB</option>
                         <option value="sas10K1200GB">SAS 10K- 1.2 TB</option>
                         <option value="sas10K900GB">SAS 10K- 900 GB</option>
@@ -200,7 +200,7 @@
                <div class="form-group">
               <label class="control-label col-sm-2" for="pwd">Enter Usable Capacity:</label>
               <div class="col-sm-8">          
-                   <input type="number" name="usablecapacity" id="usablecapacity" min="1" max="1000">
+                   <input type="number" name="usablecapacity" id="usablecapacity" min="1" max="1000" required>
                   <br><br>
               </div>
             </div>

@@ -13,7 +13,7 @@
                    <legend>Customer Info:</legend>
               <div class="form-group">
                 <label>Customer/ Company</label>
-                <input type="text" class="form-control" name="companyName" id="companyName" placeholder="Enter customer name">
+                <input type="text" class="form-control" name="companyName" id="companyName" placeholder="Enter customer/company name">
               </div>
                         
                         <div class="form-group">
@@ -45,7 +45,7 @@
                     <div class="form-group">
               <label class="control-label ">Enter Usable Capacity:</label>
                  
-                   <input type="number" name="usablecapacity" id="usablecapacity" min="1" max="1000">
+                   <input type="number" name="usablecapacity" id="usablecapacity" min="1" max="1000" required>
                   <br><br>
              
             </div>

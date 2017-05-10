@@ -10,8 +10,6 @@
 </head>
 <body>
 
-    
-    
                       
 <?php 
         if(isset($_GET['usablecapacity'])){
@@ -78,9 +76,9 @@
         };
 
 
-        
-       // diskType and their paramters
-    
+////////////////////////////////////////////////     
+//         diskType and their paramters
+////////////////////////////////////////////////    
     var disks= {
             "disk": [
                     {"diskType":"nlsas4",
@@ -177,11 +175,20 @@
 
     };
 
-// write Percentage to stdiops mapping
+        
+////////////////////////////////////////////////     
+//         write Percentage to stdiops mapping
+////////////////////////////////////////////////
+        
+
     var writePercentageToStdIOPS=[160,157,154,151,148,145,142,139,136,133,130,127,124,121,118,115,112,109,106,103,100,99.25,98.5,
       97.75,97,96.25,95.5,94.75,94,93.25,92.5,91.75,91,90.25,89.5,88.75,88,87.25,86.5,85.75,85,84.25,83.5,82.75,82,81.25,80.5,79.75,79,78.25,77.5,76.75,76,75.25,74.5,73.75,73,72.25,71.5,70.75,70,69.25,68.5,67.75,67,66.25,65.5,64.75,64,63.25,62.5,61.75,61,60.25,59.5,58.75,58,57.25,56.5,55.75,55,54.25,53.5,52.75,52,51.25,50.5,49.75,49,48.25,47.5,46.75,46,45.25,44.5,43.75,43,42.25,41.5,40,75,40];
 
- // standard values
+////////////////////////////////////////////////     
+//         standard values
+////////////////////////////////////////////////
+        
+
     
     var numberOfZilGroups=2;
     var numberOfCache= 0;
@@ -190,10 +197,12 @@
     var cacheHitPercent=50;
     var averageBlockSize=4;
 
-   
+////////////////////////////////////////////////     
+//          Global variables needed in all functions
+//          1 in the end of variables mean that they are calculated values
+////////////////////////////////////////////////   
 
-          // Global variables needed in all functions
-          // 1 in the end of variables mean that they are calculated values
+          
           var stdIOPS;
             var usableDisks, iopsPerDisk,iops1;
             var vdevs, dataDisks1, parityDisks1, minDataDisks, totalDisks1, usableSize1, size1;
@@ -207,8 +216,11 @@
         
             var stdThroughput, stdperTBIOPS;
 
-
-                    // function to calculate STDIOPS
+////////////////////////////////////////////////     
+//          function to calculate STDIOPS
+//////////////////////////////////////////////// 
+        
+                   
                       function calculate_IOPS(usableCapacity,diskType1,raidType1){
                       
                         
@@ -251,7 +263,10 @@
                       
                       };
 
-
+////////////////////////////////////////////////     
+//         Calculate Disk Paramters
+////////////////////////////////////////////////
+        
                    function calculateDiskParamters(){
                        
                        
@@ -278,15 +293,13 @@
 
 
 
-                       /*alert("Total Number of data disks:"+totalDataDisks+"<br>Total Number of usable disks:"+totalUsableDisks+
-                        "<br>Total Number of Parity Disks:"+totalParityDisks+"<br>Usable Capacity:"+usableCapacityTB+
-                        "<br>Raw capcity:"+rawCapacity);
-                        */
-
                       
                       }; 
 
-
+////////////////////////////////////////////////     
+//         Calculate IOPS with Read, Write and Meta Cache
+////////////////////////////////////////////////
+        
                       function calculateIOPSWithOthers(){
 
                        // iops with zil, l2arc, metadev
@@ -301,7 +314,9 @@
 
                       }; 
 
-
+////////////////////////////////////////////////     
+//         Calculation of Throughput with no cache, Read, Write, Meta cache and all three
+////////////////////////////////////////////////
 
                       function throughPutTable(){
 
@@ -326,7 +341,10 @@
                       }; 
 
 
-
+////////////////////////////////////////////////     
+//         Call all fuunctions
+////////////////////////////////////////////////
+        
     var IPusablecapacity= <?php echo $usableCapacity ?>;
     var IPdisktype=   "<?php echo $diskType ?>";  
     var IPraidtype=   "<?php echo $raidType ?>";
@@ -348,38 +366,233 @@
   <p>UI for generating BOM(Billing of Materials) and Price Calcualtion based on Customer Inputs </p>
 
   <ul class="nav nav-tabs">
-    <li><a data-toggle="tab" href="#home">Input Section</a></li>
+    
     <li  class="active"><a data-toggle="tab" href="#menu2">Output section</a></li>
     <li><a data-toggle="tab" href="#menu3">Formulae Sheet</a></li>
   </ul>
 
   <div class="tab-content">
    
-      <div id="home" class="tab-pane fade">
-     
-           <h3>Input Section</h3>
-      <p>Select</p>
-                
-          
-    
-    </div>
+      
 
 
     <div id="menu2" class="tab-pane fade  in active">
+         <h2>Output section</h2>
+      
+    <div class="row">
+        
+     
+                 <div class="col-md-6">
+                     <h4>IOPS Table</h4>
+                  <table class="table table-striped">
+                      <thead>
+                          <tr>
+                              <th></th>
+                              <th>IOPS</th>
+                              <th>per TB IOPS</th>
+                          </tr>
+                          </thead>
+                      
+                      <tr>
+                          <td>Standard IOPS:</td>
+                          <td><p id="tab_stdiops"></p></td>
+                          <td><p id="tab_stdiopsp"></p></td>
+                      </tr>
+                      <tr>
+                          <td>IOPS with Write Cache:</td>
+                          <td><p id="tab_wriops"></p></td>
+                          <td><p id="tab_wriopsp"></p></td>
+                      </tr>
+                      <tr>
+                          <td>IOPS with Read Cache:</td>
+                          <td><p id="tab_rdiops"></p></td>
+                          <td><p id="tab_rdiopsp"></p></td>
+                      </tr>
+                      <tr>
+                          <td>IOPS with Meta Cache:</td>
+                          <td><p id="tab_metaiops"></p></td>
+                          <td><p id="tab_metaiopsp"></p></td>
+                      </tr>
+                      <tr>
+                          <td>IOPS with All three:</td>
+                          <td><p id="tab_alliops"></p></td>
+                          <td><p id="tab_alliopsp"></p></td>
+                      </tr>
+
+                  </table>
+          </div>
+        
+        <div class="col-md-6">
+            <h4>Throughput Table</h4>
+                  <table class="table table-striped">
+                     
+                          <thead>
+                          <tr>
+                              <th>Throughput</th>
+                              <th>KBPS</th>
+                              <th>MBPS</th>
+                          </tr>
+                          </thead>
+                          <td>Disk Throughput:</td>
+                          <td><p id="tab_thk"></p></td>          
+                          <td><p id="tab_thm"></p></td> 
+                      
+                      <tr>
+                          <td>Disk Throughput with Write cache:</td>
+                          <td><p id="tab_thwrk"></p></td>
+                          <td><p id="tab_thwrm"></p></td>
+                      </tr>
+                      <tr>
+                          <td>Disk Throughput with Read Cache:</td>
+                          <td><p id="tab_thrdk"></p></td>          
+                          <td><p id="tab_thrdm"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Disk Throughput with Meta cache:</td>
+                          <td><p id="tab_thmetak"></p></td>          
+                          <td><p id="tab_thmetam"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Disk Throughput with all three:</td>
+                          <td><p id="tab_thallk"></p></td>          
+                          <td><p id="tab_thallm"></p></td>          
+                      </tr>
+
+                  </table>
+          </div>
         
         
-      <h3>Output section</h3>
+        </div>
+     
+        
+        
+        
+        
+    <h4>Disk paramters calculation</h4>   
+    <div class="row">
+                <div class="col-md-6">
+                      <table class="table table-hover">
+                      <tr>
+                          <td>Total Number of Data disks:</td>
+                          <td><p id="tab_datadisks"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Total Number of Usable disks:</td>
+                          <td><p id="tab_usabledisks"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Total Number of Parity disks:</td>
+                          <td><p id="tab_paritydisks"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Usable Capacity:</td>
+                          <td><p id="tab_usablecapacity"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Raw Capcity:</td>
+                          <td><p id="tab_rawcapacity"></p></td>          
+                      </tr>
+
+                  </table>
+            </div>
+    </div>
+        
+     <h4>Other Secondary Information</h4> 
+        <div class="row">
+     
+      
+            <div class="col-md-6">
+                  <table class="table table-bordered">
+                      <tr>
+                          <td>Total Disks:</td>
+                          <td><p id="tab_totaldisks"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Number of Spares:</td>
+                          <td><p id="tab_spares"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Number of JBODS (12 Bay):</td>
+                          <td><p id="tab_j12"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Number of JBODS (24 Bay):</td>
+                          <td><p id="tab_j24"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Number of JBODS (45 Bay):</td>
+                          <td><p id="tab_j45"></p></td>          
+                      </tr>
+                       <tr>
+                          <td>Number of JBODS (72 Bay):</td>
+                          <td><p id="tab_j72"></p></td>          
+                      </tr>
+                      <tr>
+                          <td>Number of JBODS (90 Bay):</td>
+                          <td><p id="tab_j90"></p></td>          
+                      </tr>
+
+                  </table>
+          </div>
+        </div>
+        
+  <!-- 
       <p id="stdiops"></p>
       <div id="diskParamters"></div>
-      <div id="otherinfo"></div>
 
+      <div id="otherinfo"></div>
+ 
       <div id="throughputs"></div>
-      
-        
+  -->      
+     
+ 
       
 
 <script>
+    
+document.getElementById("tab_stdiops").innerHTML = stdIOPS;  
+document.getElementById("tab_wriops").innerHTML = stdIOPSWithZil;  
+document.getElementById("tab_rdiops").innerHTML = stdIOPSWithL2arc;  
+document.getElementById("tab_metaiops").innerHTML = stdIOPSWithMetaDev;  
+document.getElementById("tab_alliops").innerHTML = stdIOPSWithAll3;
+
+document.getElementById("tab_stdiopsp").innerHTML = stdperTBIOPS;  
+document.getElementById("tab_wriopsp").innerHTML = perTBIOPS[0];  
+document.getElementById("tab_rdiopsp").innerHTML = perTBIOPS[1];  
+document.getElementById("tab_metaiopsp").innerHTML = perTBIOPS[2];  
+document.getElementById("tab_alliopsp").innerHTML = perTBIOPS[3];
+    
+    
+document.getElementById("tab_thk").innerHTML = stdThroughput;  
+document.getElementById("tab_thm").innerHTML = stdThroughput*8/1000;  
+document.getElementById("tab_thwrk").innerHTML = throughputsKBPS[0];  
+document.getElementById("tab_thwrm").innerHTML = throughputsMBPS[0];  
+document.getElementById("tab_thrdk").innerHTML = throughputsKBPS[1];  
+document.getElementById("tab_thrdm").innerHTML = throughputsMBPS[1];
+document.getElementById("tab_thmetak").innerHTML = throughputsKBPS[2];  
+document.getElementById("tab_thmetam").innerHTML = throughputsMBPS[2];  
+document.getElementById("tab_thallk").innerHTML = throughputsKBPS[3];  
+document.getElementById("tab_thallm").innerHTML = throughputsMBPS[3];
+    
+    
+    
+document.getElementById("tab_datadisks").innerHTML = totalDataDisks;  
+document.getElementById("tab_usabledisks").innerHTML = totalUsableDisks;  
+document.getElementById("tab_paritydisks").innerHTML = totalParityDisks;  
+document.getElementById("tab_usablecapacity").innerHTML = usableCapacityTB;  
+document.getElementById("tab_rawcapacity").innerHTML = rawCapacity; 
+    
+document.getElementById("tab_totaldisks").innerHTML = totalTotalDisks;  
+document.getElementById("tab_spares").innerHTML = spares;
+document.getElementById("tab_j12").innerHTML = jbods12;
+document.getElementById("tab_j24").innerHTML = jbods24;
+document.getElementById("tab_j45").innerHTML = jbods45;
+document.getElementById("tab_j72").innerHTML = jbods72;
+document.getElementById("tab_j90").innerHTML = jbods90;
+    
+/*    
 document.getElementById("stdiops").innerHTML = "Std IOPS="+stdIOPS;
+    
 
   document.getElementById("diskParamters").innerHTML = "Total Number of data disks:"+totalDataDisks+"<br>Total Number of usable disks:"+totalUsableDisks+
                         "<br>Total Number of Parity Disks:"+totalParityDisks+"<br>Usable Capacity:"+usableCapacityTB+
@@ -405,7 +618,8 @@ document.getElementById("stdiops").innerHTML = "Std IOPS="+stdIOPS;
                               +"Disk with all three Cache      "+stdIOPSWithAll3+ "     "+throughputsKBPS[3]+"           "+throughputsMBPS[3]+"              "+perTBIOPS[3]+"<br></pre>";
 
    
-                                                                                                                       
+   */
+                                                                                                                        
 
 </script>
 
