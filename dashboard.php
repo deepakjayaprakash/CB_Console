@@ -39,7 +39,7 @@
 		{
 			$password= $row['password'];
             $company=$row['company'];
-			
+			$email=$row['email_id'];
 		}
     
 	
@@ -131,18 +131,23 @@
         <div class="col-md-6">
         <table class="table table-hover">
             <tr>
-                <td>User Name</td>
+                <td><b>User Name:</b></td>
                 <td><?php  echo $user; ?></td>
             </tr>
             
             <tr>
-                <td>Company</td>
+                <td><b>Company:</b></td>
                 <td><?php  echo $company; ?></td>
             </tr>
             
             <tr>
-                <td>Password</td>
+                <td><b>Password:</b></td>
                 <td><?php  echo $password; ?></td>
+            </tr>
+            
+             <tr>
+                <td><b>Email Id:</b></td>
+                <td><?php  echo $email; ?></td>
             </tr>
             
            

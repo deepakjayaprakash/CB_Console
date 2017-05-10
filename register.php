@@ -1,6 +1,4 @@
 
-
-
 <?php
 
 
@@ -12,6 +10,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
   $username = mysql_real_escape_string($_POST['username']);
   $password = mysql_real_escape_string($_POST['password']);
   $company =  mysql_real_escape_string($_POST['company']);
+  $email =  mysql_real_escape_string($_POST['email']);
   
   $query = mysql_query("Select * from partner_db"); //Query the users table
   while($row = mysql_fetch_array($query)) //display all rows from query
@@ -21,18 +20,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     {
     
       Print '<script>alert("This Username has been taken!");</script>'; //Prompts the user
-      Print '<script>window.location.assign("login.php");</script>'; // redirects to register.php
+      Print '<script>window.location.assign("login.php");</script>'; 
     }
   }
-  if($bool) // checks if bool is true
-  {
-    mysql_query("INSERT INTO users (username, password,company) VALUES ('$username','$password','$company')"); //Inserts the value to table users
-    Print '<script>alert("Successfully Registered! Please Login with your credentials");</script>'; // Prompts the user
-    Print '<script>window.location.assign("login.php");</script>'; // redirects to register.php
-  }
+ 
+    $insert=mysql_query("INSERT INTO partner_db (username, password,company,email_id) VALUES ('$username','$password','$company','$email')"); //Inserts the value to table users
+ 
+   if($insert==TRUE){
+       Print '<script>alert("Successfully Registered! Please Login with your credentials");</script>';
+       Print '<script>window.location.assign("login.php");</script>'; 
+   }
+    else{
+        Print '<script>alert("Failed to register. Try again ! ");</script>';
+        Print '<script>window.location.assign("login.php");</script>'; 
+    }
+   
 }
+
+
 ?>
-
-
-
-

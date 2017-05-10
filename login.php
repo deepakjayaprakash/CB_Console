@@ -34,7 +34,7 @@
 	transition: all 0.1s linear;
 }
 .panel-login>.panel-heading a.active{
-	color: #029f5b;
+	color: #005cb9;
 	font-size: 18px;
 }
 .panel-login>.panel-heading hr{
@@ -65,7 +65,7 @@
 	border-color: #ccc;
 }
 .btn-login {
-	background-color: #59B2E0;
+	background-color: #005cb9;
 	outline: none;
 	color: #fff;
 	font-size: 14px;
@@ -105,10 +105,16 @@
 .btn-register:hover,
 .btn-register:focus {
 	color: #fff;
-	background-color: #1CA347;
-	border-color: #1CA347;
+	background-color: #2c9a41;
+	border-color: #2c9a41;
 }
 
+        
+        
+          .navbar{background: #005cb9;
+    }  
+        
+        
     </style>
     
     <script>
@@ -136,6 +142,33 @@
 </head>
 <body>
 
+    <nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>                        
+      </button>
+        <img src="http://www.cloudbyte.com/wp-content/uploads/2017/03/white-logo.png" style="float:left;">      <a class="navbar-brand" href="#myPage" style="color:white;text-align:center;"><h3>Partner Login</h3></a>
+    
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="login.php" style="color:white;padding:20px;padding-top:40px;">HOME</a></li>
+        
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<br>
+    
     
     
     <div class="container">
@@ -181,7 +214,7 @@
 										</div>
 									</div>
 								</form>
-								<form id="register-form" action="login.php" method="POST" role="form" style="display: none;">
+								<form id="register-form" action="register.php" method="POST" role="form" style="display: none;">
 									<div class="form-group">
 										<input type="text" name="username" id="username" tabindex="1" class="form-control" placeholder="Username" value="">
 									</div>
@@ -221,36 +254,5 @@
 <!--Created by Deepak Jayaprakash -->
 </html>
 
-
-<?php
-
-
-  mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
-  mysql_select_db("partnerlogin") or die("Cannot connect to database"); //Connect to database
-
-  
-if($_SERVER["REQUEST_METHOD"] == "POST"){
-  $username = mysql_real_escape_string($_POST['username']);
-  $password = mysql_real_escape_string($_POST['password']);
-  $company =  mysql_real_escape_string($_POST['company']);
-  
-  $query = mysql_query("Select * from partner_db"); //Query the users table
-  while($row = mysql_fetch_array($query)) //display all rows from query
-  {
-    $table_users = $row['username']; // the first username row is passed on to $table_users, and so on until the query is finished
-    if($username == $table_users) // checks if there are any matching fields
-    {
-    
-      Print '<script>alert("This Username has been taken!");</script>'; //Prompts the user
-      Print '<script>window.location.assign("login.php");</script>'; // redirects to register.php
-    }
-  }
- 
-    mysql_query("INSERT INTO partner_db (username, password,company) VALUES ('$username','$password','$company')"); //Inserts the value to table users
-    Print '<script>alert("Successfully Registered! Please Login with your credentials");</script>'; // Prompts the user
-    Print '<script>window.location.assign("login.php");</script>'; // redirects to register.php
-  
-}
-?>
 
 

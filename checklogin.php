@@ -44,5 +44,9 @@
 			Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
 		}
     }
+else{
+    Print '<script>alert("Incorrect Information!");</script>'; //Prompts the user
+			Print '<script>window.location.assign("login.php");</script>'; // redirects to login.php
+}
 	
 ?>
