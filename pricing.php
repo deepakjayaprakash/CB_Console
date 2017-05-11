@@ -17,8 +17,7 @@
 </head>
 <body>
     
-    
-    
+   
                           
 <?php 
         if(isset($_GET['companyName'])){
@@ -84,8 +83,11 @@
     var customerName=  "<?php echo $customerName ?>";  
     var address=  "<?php echo $address ?>";  
     var description=  "<?php echo $description ?>";  
-    
-    //raid type and #data disks, 3parity disks and # total disks
+  
+///////////////////////////////////////////////////////////////////
+//    raid type and #data disks, 3parity disks and # total disks
+///////////////////////////////////////////////////////////////////
+        
     var raids={ "raid" : [
               { "raidType": "Raidz1-SingleParity(4+1) Typical SAS" ,
                 "DataDisks": 4,
@@ -107,10 +109,10 @@
             
         };
 
-
+///////////////////////////////////////////////////////////////////        
+//        diskType and their paramters
+///////////////////////////////////////////////////////////////////    
         
-       // diskType and their paramters
-    
     var disks= {
             "disk": [
                     {"diskType":"NLSAS",
@@ -256,8 +258,9 @@
         
        
 
-
- // standard values
+///////////////////////////////////////////////////////////////////
+//              standard values
+///////////////////////////////////////////////////////////////////    
     
     var numberOfZilGroups=2;
     var numberOfCache= 0;
@@ -292,6 +295,11 @@
           // unit prices 
             var costController, costJBODS, costDataDisks, costZil, costReadCache, costMetaCache, costSASCables,pricepertb;
             costSASCables=100;
+  
+        
+///////////////////////////////////////////////////////////////////
+//        multilplies unit price with the quanity to get netprice of each item        
+///////////////////////////////////////////////////////////////////        
         
         function calculatePrice(){
          
@@ -338,8 +346,7 @@
             
         };
         
-        
-  
+
         
         calculatePrice();
     </script>
@@ -628,8 +635,8 @@
     <div class="row" style="background-color:darkslategrey;color:white;padding:5px;text-align:center">
             <p>Thank you for your buisness !</p>
         </div>
-            
   
+ 
             
     </div>
                 
