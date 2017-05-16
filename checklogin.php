@@ -6,6 +6,11 @@
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 
+    if($username== "admin" && $password== "admin@cloudbyte#partner*login123"){
+        Print '<script>window.location.assign("admin-dashboard.php");</script>'; 
+
+    }
+
 	$query = mysql_query("SELECT * from partner_db WHERE username='$username'"); //Query the users table if there are matching rows equal to $username
 	$exists = mysql_num_rows($query); //Checks if username exists
 	$table_users = "";	
