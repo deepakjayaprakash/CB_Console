@@ -1,3 +1,10 @@
+<?php
+/*
+Template Name: Dashboard
+*/
+ ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,16 +29,18 @@
  
     
     <?php
+
+
 	session_start(); //starts the session
 	if($_SESSION['user']){ //checks if user is logged in
 	}
 	else{
-		header("location:dashboard.php"); // redirects if user is not logged in
+		header("location:http://newstag.cloudbyte.com/partner-dashboard/"); // redirects if user is not logged in
 	}
 	$user = $_SESSION['user']; //assigns user value
 	
-    mysql_connect("localhost", "root","") or die(mysql_error()); //Connect to server
-	mysql_select_db("partnerlogin") or die("Cannot connect to database"); //Connect to database
+    mysql_connect("localhost", "","") or die(mysql_error()); //Connect to server
+	mysql_select_db("") or die("Cannot connect to database"); //Connect to database
     
     $query = mysql_query("SELECT * from partner_db WHERE username='$user'");
     
@@ -64,8 +73,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="login.php" style="color:white;padding:20px;padding-top:40px;">HOME</a></li>
-        <li><a href="logout.php" style="color:white;padding:20px;padding-top:40px;">LOGOUT</a></li>
+        <li><a href="http://newstag.cloudbyte.com/partner-page-login/" style="color:white;padding:20px;padding-top:40px;">HOME</a></li>
+        <li><a href="http://newstag.cloudbyte.com/partner-page-logout/" style="color:white;padding:20px;padding-top:40px;">LOGOUT</a></li>
         
       </ul>
     </div>
@@ -104,7 +113,7 @@
       <h3>Select the required configuration to check out IOPS, throughput and other statistics</h3>
         <br><br>
          <?php 
-            echo file_get_contents('iops.php');
+            echo file_get_contents('http://newstag.cloudbyte.com/partner-iops/');
           ?>
     </div>
       
@@ -112,14 +121,14 @@
     <div id="quote" class="tab-pane fade ">
       <h3>Quote</h3>
           <?php 
-            echo file_get_contents('quote.php');
+            echo file_get_contents('http://newstag.cloudbyte.com/partner-quote/');
           ?>
       
     </div>
     <div id="help" class="tab-pane fade">
      
             <?php 
-            echo file_get_contents('help.php');
+            echo file_get_contents('http://newstag.cloudbyte.com/partner-help/');
           ?>
      
     </div>
