@@ -6,8 +6,10 @@
 	$username = mysql_real_escape_string($_POST['username']);
 	$password = mysql_real_escape_string($_POST['password']);
 
-    if($username== "admin" && $password== "admin@cloudbyte#partner*login123"){
-        Print '<script>window.location.assign("admin-dashboard.php");</script>'; 
+    if($username== "admin" && $password== "admin@cloudbyte#partner*login123" && $_SERVER['HTTP_REFERER']=="http://localhost:1234/console/admin-login.php"){
+        
+       Print '<script>window.location.assign("admin-dashboard.php");</script>'; 
+     
 
     }
 
